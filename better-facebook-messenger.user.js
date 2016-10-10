@@ -3,6 +3,7 @@
 // @namespace    http://simonalling.se
 // @version      1.0
 // @description  Hides those disturbing GIF images under Shared Photos unless hovered upon.
+// @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
 // @match        http://*.messenger.com/*
 // @match        https://*.messenger.com/*
