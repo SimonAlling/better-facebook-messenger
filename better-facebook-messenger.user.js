@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better Facebook Messenger
 // @namespace    http://simonalling.se
-// @version      1.1.3
+// @version      1.1.4
 // @description  Hides those disturbing GIFs unless hovered upon.
 // @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
@@ -62,17 +62,14 @@ const CSS = `
 }
 
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i] {
-	position: relative; /* to allow absolute positioning */
 	background-size: 1px; /* to prevent it from shining through at the corners */
+	position: relative; /* to allow absolute positioning */
 }
 
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after {
 	background-color: ${COLOR_GIF_BACKGROUND};
 	border: 1px solid ${COLOR_GIF_BORDER};
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
+	border-radius: inherit;
 	cursor: pointer;
 	padding-top: 50%; /* trial and error */
 	position: absolute;
@@ -91,8 +88,8 @@ const CSS = `
 // Insert CSS:
 document.head.appendChild((() => {
 	const styleElement = document.createElement("style");
-	styleElement.textContent = CSS;
 	styleElement.id = ID_BETTER_FACEBOOK_MESSENGER;
+	styleElement.textContent = CSS;
 	return styleElement;
 })());
 
