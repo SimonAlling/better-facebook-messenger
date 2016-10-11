@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better Facebook Messenger
 // @namespace    http://simonalling.se
-// @version      1.1.4
+// @version      1.1.5
 // @description  Hides those disturbing GIFs unless hovered upon.
 // @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
@@ -14,73 +14,71 @@
 // IIFE start
 
 // Strings:
-const ID_BETTER_FACEBOOK_MESSENGER  = "Better_Facebook_Messenger";
-const CLASS_SHARED_PHOTOS           = "_1li_"; // Shared Photos container
-const CLASS_SHARED_PHOTOS_THUMBNAIL = "_3m31"; // thumbnail for a shared photo
-const CLASS_CHAT_PHOTO              = "_4tsk"; // image in the chat
+const ID_BETTER_FACEBOOK_MESSENGER = "Better_Facebook_Messenger";
+const CLASS_SHARED_PHOTO = "_3m31"; // thumbnail for a shared photo
+const CLASS_CHAT_PHOTO = "_4tsk"; // image in the chat
 
-const STRING_GIF_LABEL              = "GIF";
-const COLOR_GIF_BACKGROUND          = "rgb(248, 250, 252)";
-const COLOR_GIF_BORDER              = "rgb(224, 228, 232)";
+const STRING_GIF_LABEL = "GIF";
+const COLOR_GIF_BACKGROUND = "rgb(248, 250, 252)";
+const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
 
 
 // CSS:
 const CSS = `
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]::after
-{
-    background-image: none;
-    background-position: center center;
+/* GIF (common): */
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i],
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i] {
+    background-size: 0; /* to prevent it from shining through at the corners or whatever */
+}
+
+/* GIF (common) on hover: */
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover,
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active,
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus,
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:hover,
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:active,
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:focus {
     background-size: cover;
+}
+
+/* GIF replacement (common): */
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after,
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i]::after {
+    background-color: ${COLOR_GIF_BACKGROUND};
+    border: 1px solid ${COLOR_GIF_BORDER};
+    border-radius: inherit;
     box-sizing: border-box;
     content: "${STRING_GIF_LABEL}";
     display: block;
     height: 100%;
     text-align: center;
-}
-
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover::after,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active::after,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus::after,
-.${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]:hover::after,
-.${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]:active::after,
-.${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]:focus::after
-{
-    background-image: inherit;
-    border: none;
-    content: "";
-}
-
-
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i] img {
-    visibility: hidden;
-}
-
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover img,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active img,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus img {
-    visibility: visible;
-}
-
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i] {
-    background-size: 1px; /* to prevent it from shining through at the corners */
-    position: relative; /* to allow absolute positioning */
-}
-
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after {
-    background-color: ${COLOR_GIF_BACKGROUND};
-    border: 1px solid ${COLOR_GIF_BORDER};
-    border-radius: inherit;
-    cursor: pointer;
-    padding-top: 50%; /* trial and error */
-    position: absolute;
-    top: 0;
     width: 100%;
 }
 
-.${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]::after {
-    background-color: ${COLOR_GIF_BACKGROUND};
-    border: 1px solid ${COLOR_GIF_BORDER};
+/* GIF replacement (common) on hover: */
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover::after,
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active::after,
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus::after,
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:hover::after,
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:active::after,
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:focus::after {
+    display: none;
+}
+
+/* GIF in chat: */
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i] {
+    position: relative; /* to allow absolute positioning */
+}
+
+/* GIF replacement in chat: */
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after {
+    padding-top: 50%; /* trial and error */
+    position: absolute;
+    top: 0;
+}
+
+/* GIF replacement in Shared Photos: */
+.${CLASS_SHARED_PHOTO}[href*=\\.gif i]::after {
     padding-top: calc(50% - 12px); /* trial and error */
 }
 `;
