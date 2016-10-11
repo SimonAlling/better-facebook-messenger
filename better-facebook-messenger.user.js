@@ -28,14 +28,14 @@ const CSS = `
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after,
 .${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]::after
 {
-	background-image: none;
-	background-position: center center;
-	background-size: cover;
-	box-sizing: border-box;
-	content: "${STRING_GIF_LABEL}";
-	display: block;
-	height: 100%;
-	text-align: center;
+    background-image: none;
+    background-position: center center;
+    background-size: cover;
+    box-sizing: border-box;
+    content: "${STRING_GIF_LABEL}";
+    display: block;
+    height: 100%;
+    text-align: center;
 }
 
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover::after,
@@ -45,52 +45,52 @@ const CSS = `
 .${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]:active::after,
 .${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]:focus::after
 {
-	background-image: inherit;
-	border: none;
-	content: "";
+    background-image: inherit;
+    border: none;
+    content: "";
 }
 
 
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i] img {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover img,
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active img,
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus img {
-	visibility: visible;
+    visibility: visible;
 }
 
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i] {
-	background-size: 1px; /* to prevent it from shining through at the corners */
-	position: relative; /* to allow absolute positioning */
+    background-size: 1px; /* to prevent it from shining through at the corners */
+    position: relative; /* to allow absolute positioning */
 }
 
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after {
-	background-color: ${COLOR_GIF_BACKGROUND};
-	border: 1px solid ${COLOR_GIF_BORDER};
-	border-radius: inherit;
-	cursor: pointer;
-	padding-top: 50%; /* trial and error */
-	position: absolute;
-	top: 0;
-	width: 100%;
+    background-color: ${COLOR_GIF_BACKGROUND};
+    border: 1px solid ${COLOR_GIF_BORDER};
+    border-radius: inherit;
+    cursor: pointer;
+    padding-top: 50%; /* trial and error */
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]::after {
-	background-color: ${COLOR_GIF_BACKGROUND};
-	border: 1px solid ${COLOR_GIF_BORDER};
-	padding-top: calc(50% - 12px); /* trial and error */
+    background-color: ${COLOR_GIF_BACKGROUND};
+    border: 1px solid ${COLOR_GIF_BORDER};
+    padding-top: calc(50% - 12px); /* trial and error */
 }
 `;
 
 
 // Insert CSS:
 document.head.appendChild((() => {
-	const styleElement = document.createElement("style");
-	styleElement.id = ID_BETTER_FACEBOOK_MESSENGER;
-	styleElement.textContent = CSS;
-	return styleElement;
+    const styleElement = document.createElement("style");
+    styleElement.id = ID_BETTER_FACEBOOK_MESSENGER;
+    styleElement.textContent = CSS;
+    return styleElement;
 })());
 
 // IIFE end
