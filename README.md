@@ -1,10 +1,10 @@
 # Better Facebook Messenger
 
-Hides those disturbing GIF images under Shared Photos unless they are hovered upon.
+Hides those disturbing GIFs unless hovered upon.
 
 ## Try it (without installing)
 
-*It is generally a good idea to be careful about running unknown code. If you don't understand JavaScript, you might want to ask someone who does to verify that the script is harmless.*
+*It's generally a good idea to be careful about running unknown code. If you don't understand JavaScript, you might want to ask someone who does to verify that the script is harmless.*
 
 1. Copy the entire code from [`better-facebook-messenger.user.js`][bfm-raw].
 2. Go to [Messenger][messenger].
