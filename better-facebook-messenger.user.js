@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better Facebook Messenger
 // @namespace    http://simonalling.se
-// @version      1.1.1
+// @version      1.1.2
 // @description  Hides those disturbing GIF images under Shared Photos unless hovered upon.
 // @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
@@ -83,7 +83,7 @@ const CSS = `
 .${CLASS_SHARED_PHOTOS} .${CLASS_SHARED_PHOTOS_THUMBNAIL}[href*=\\.gif i]::after {
 	background-color: ${COLOR_GIF_BACKGROUND};
 	border: 1px solid ${COLOR_GIF_BORDER};
-	padding-top: calc(50% - 16px); /* trial and error */
+	padding-top: calc(50% - 12px); /* trial and error */
 }
 `;
 
