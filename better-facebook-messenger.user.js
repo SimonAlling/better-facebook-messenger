@@ -15,10 +15,11 @@
 
 // Strings:
 const ID_BETTER_FACEBOOK_MESSENGER  = "Better_Facebook_Messenger";
-const STRING_GIF_LABEL              = "GIF";
 const CLASS_SHARED_PHOTOS           = "_1li_"; // Shared Photos container
 const CLASS_SHARED_PHOTOS_THUMBNAIL = "_3m31"; // thumbnail for a shared photo
 const CLASS_CHAT_PHOTO              = "_4tsk"; // image in the chat
+
+const STRING_GIF_LABEL              = "GIF";
 const COLOR_GIF_BACKGROUND          = "rgb(248, 250, 252)";
 const COLOR_GIF_BORDER              = "rgb(224, 228, 232)";
 
