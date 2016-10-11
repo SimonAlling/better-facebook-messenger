@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Better Facebook Messenger
 // @namespace    http://simonalling.se
-// @version      1.1.2
-// @description  Hides those disturbing GIF images under Shared Photos unless hovered upon.
+// @version      1.1.3
+// @description  Hides those disturbing GIFs unless hovered upon.
 // @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
 // @match        http://*.messenger.com/*
