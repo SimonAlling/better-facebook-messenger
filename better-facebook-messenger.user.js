@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better Facebook Messenger
 // @namespace    http://simonalling.se
-// @version      1.2.1
+// @version      1.2.2
 // @description  Hides those disturbing GIFs unless hovered upon.
 // @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
@@ -35,9 +35,13 @@ const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
 // CSS:
 const CSS = `
 /* GIF (common): */
+/* The purpose of these rules is to prevent the GIFs from shining through at the corners or whatever. */
 ${SELECTOR_FACEBOOK_CHAT_GIF},
 ${SELECTOR_MESSENGER_SHARED_GIF} {
-    background-size: 0; /* to prevent it from shining through at the corners or whatever */
+    background-size: 0;
+}
+${SELECTOR_MESSENGER_CHAT_GIF} img {
+    opacity: 0;
 }
 
 /* GIF (common) on hover: */
@@ -48,6 +52,11 @@ ${SELECTOR_MESSENGER_SHARED_GIF}:hover,
 ${SELECTOR_MESSENGER_SHARED_GIF}:active,
 ${SELECTOR_MESSENGER_SHARED_GIF}:focus {
     background-size: cover;
+}
+${SELECTOR_MESSENGER_CHAT_GIF}:hover img,
+${SELECTOR_MESSENGER_CHAT_GIF}:active img,
+${SELECTOR_MESSENGER_CHAT_GIF}:focus img {
+    opacity: 1;
 }
 
 /* GIF replacement (common): */
