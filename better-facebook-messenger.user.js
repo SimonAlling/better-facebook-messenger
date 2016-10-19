@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better Facebook Messenger
 // @namespace    http://simonalling.se
-// @version      1.2
+// @version      1.2.1
 // @description  Hides those disturbing GIFs unless hovered upon.
 // @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
@@ -22,6 +22,11 @@ const CLASS_MESSENGER_CHAT_PHOTO = "_4tsk"; // image in the chat on Messenger.co
 const CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER = "_4yp6"; // wrapper for image in the chat on Facebook.com
 const CLASS_FACEBOOK_CHAT_PHOTO = "_4yp9"; // image in the chat on Facebook.com
 
+const SELECTOR_MESSENGER_CHAT_GIF = `.${CLASS_MESSENGER_CHAT_PHOTO}[data-testid=animated_image]`; // GIF in the chat on Messenger.com
+const SELECTOR_FACEBOOK_CHAT_GIF = `.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]`;
+const SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER = `.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}`;
+const SELECTOR_MESSENGER_SHARED_GIF = `.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]`;
+
 const STRING_GIF_LABEL = "GIF";
 const COLOR_GIF_BACKGROUND = "rgb(248, 250, 252)";
 const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
@@ -30,29 +35,25 @@ const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
 // CSS:
 const CSS = `
 /* GIF (common): */
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i],
-.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i] {
+${SELECTOR_FACEBOOK_CHAT_GIF},
+${SELECTOR_MESSENGER_SHARED_GIF} {
     background-size: 0; /* to prevent it from shining through at the corners or whatever */
 }
 
 /* GIF (common) on hover: */
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:hover,
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:active,
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:focus,
-.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
-.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:active .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
-.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:hover,
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:active,
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:focus {
+${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover ${SELECTOR_FACEBOOK_CHAT_GIF},
+${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:active ${SELECTOR_FACEBOOK_CHAT_GIF},
+${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus ${SELECTOR_FACEBOOK_CHAT_GIF},
+${SELECTOR_MESSENGER_SHARED_GIF}:hover,
+${SELECTOR_MESSENGER_SHARED_GIF}:active,
+${SELECTOR_MESSENGER_SHARED_GIF}:focus {
     background-size: cover;
 }
 
 /* GIF replacement (common): */
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]::after {
+${SELECTOR_MESSENGER_CHAT_GIF}::after,
+${SELECTOR_FACEBOOK_CHAT_GIF}::after,
+${SELECTOR_MESSENGER_SHARED_GIF}::after {
     background-color: ${COLOR_GIF_BACKGROUND};
     border: 1px solid ${COLOR_GIF_BORDER};
     border-radius: inherit;
@@ -65,34 +66,34 @@ const CSS = `
 }
 
 /* GIF replacement (common) on hover: */
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:hover::after,
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:active::after,
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:focus::after,
-.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:active .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:hover::after,
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:active::after,
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:focus::after {
+${SELECTOR_MESSENGER_CHAT_GIF}:hover::after,
+${SELECTOR_MESSENGER_CHAT_GIF}:active::after,
+${SELECTOR_MESSENGER_CHAT_GIF}:focus::after,
+${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover ${SELECTOR_FACEBOOK_CHAT_GIF}::after,
+${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:active ${SELECTOR_FACEBOOK_CHAT_GIF}::after,
+${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus ${SELECTOR_FACEBOOK_CHAT_GIF}::after,
+${SELECTOR_MESSENGER_SHARED_GIF}:hover::after,
+${SELECTOR_MESSENGER_SHARED_GIF}:active::after,
+${SELECTOR_MESSENGER_SHARED_GIF}:focus::after {
     display: none;
 }
 
 /* GIF in chat: */
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i],
-.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i] {
+${SELECTOR_MESSENGER_CHAT_GIF},
+${SELECTOR_FACEBOOK_CHAT_GIF} {
     position: relative; /* to allow absolute positioning */
 }
 
 /* GIF replacement in chat: */
-.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]::after {
+${SELECTOR_MESSENGER_CHAT_GIF}::after,
+${SELECTOR_FACEBOOK_CHAT_GIF}::after {
     padding-top: 50%; /* trial and error */
     position: absolute;
     top: 0;
 }
 
 /* GIF replacement in Shared Photos: */
-.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]::after {
+${SELECTOR_MESSENGER_SHARED_GIF}::after {
     padding-top: calc(50% - 12px); /* trial and error */
 }
 `;
