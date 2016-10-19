@@ -17,14 +17,14 @@
 
 // Strings:
 const ID_BETTER_FACEBOOK_MESSENGER = "Better_Facebook_Messenger";
-const CLASS_MESSENGER_SHARED_PHOTO = "_3m31"; // thumbnail for a shared photo on Messenger.com
-const CLASS_MESSENGER_CHAT_PHOTO = "_4tsk"; // image in the chat on Messenger.com
 const CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER = "_4yp6"; // wrapper for image in the chat on Facebook.com
 const CLASS_FACEBOOK_CHAT_PHOTO = "_4yp9"; // image in the chat on Facebook.com
+const CLASS_MESSENGER_CHAT_PHOTO = "_4tsk"; // image in the chat on Messenger.com
+const CLASS_MESSENGER_SHARED_PHOTO = "_3m31"; // thumbnail for a shared photo on Messenger.com
 
-const SELECTOR_MESSENGER_CHAT_GIF = `.${CLASS_MESSENGER_CHAT_PHOTO}[data-testid=animated_image]`; // GIF in the chat on Messenger.com
-const SELECTOR_FACEBOOK_CHAT_GIF = `.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]`;
 const SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER = `.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}`;
+const SELECTOR_FACEBOOK_CHAT_GIF = `.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]`;
+const SELECTOR_MESSENGER_CHAT_GIF = `.${CLASS_MESSENGER_CHAT_PHOTO}[data-testid=animated_image]`; // GIF in the chat on Messenger.com
 const SELECTOR_MESSENGER_SHARED_GIF = `.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]`;
 
 const STRING_GIF_LABEL = "GIF";
@@ -51,8 +51,8 @@ ${SELECTOR_MESSENGER_SHARED_GIF}:focus {
 }
 
 /* GIF replacement (common): */
-${SELECTOR_MESSENGER_CHAT_GIF}::after,
 ${SELECTOR_FACEBOOK_CHAT_GIF}::after,
+${SELECTOR_MESSENGER_CHAT_GIF}::after,
 ${SELECTOR_MESSENGER_SHARED_GIF}::after {
     background-color: ${COLOR_GIF_BACKGROUND};
     border: 1px solid ${COLOR_GIF_BORDER};
@@ -66,12 +66,12 @@ ${SELECTOR_MESSENGER_SHARED_GIF}::after {
 }
 
 /* GIF replacement (common) on hover: */
-${SELECTOR_MESSENGER_CHAT_GIF}:hover::after,
-${SELECTOR_MESSENGER_CHAT_GIF}:active::after,
-${SELECTOR_MESSENGER_CHAT_GIF}:focus::after,
 ${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover ${SELECTOR_FACEBOOK_CHAT_GIF}::after,
 ${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:active ${SELECTOR_FACEBOOK_CHAT_GIF}::after,
 ${SELECTOR_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus ${SELECTOR_FACEBOOK_CHAT_GIF}::after,
+${SELECTOR_MESSENGER_CHAT_GIF}:hover::after,
+${SELECTOR_MESSENGER_CHAT_GIF}:active::after,
+${SELECTOR_MESSENGER_CHAT_GIF}:focus::after,
 ${SELECTOR_MESSENGER_SHARED_GIF}:hover::after,
 ${SELECTOR_MESSENGER_SHARED_GIF}:active::after,
 ${SELECTOR_MESSENGER_SHARED_GIF}:focus::after {
@@ -79,14 +79,14 @@ ${SELECTOR_MESSENGER_SHARED_GIF}:focus::after {
 }
 
 /* GIF in chat: */
-${SELECTOR_MESSENGER_CHAT_GIF},
-${SELECTOR_FACEBOOK_CHAT_GIF} {
+${SELECTOR_FACEBOOK_CHAT_GIF},
+${SELECTOR_MESSENGER_CHAT_GIF} {
     position: relative; /* to allow absolute positioning */
 }
 
 /* GIF replacement in chat: */
-${SELECTOR_MESSENGER_CHAT_GIF}::after,
-${SELECTOR_FACEBOOK_CHAT_GIF}::after {
+${SELECTOR_FACEBOOK_CHAT_GIF}::after,
+${SELECTOR_MESSENGER_CHAT_GIF}::after {
     padding-top: 50%; /* trial and error */
     position: absolute;
     top: 0;
