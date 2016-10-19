@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         Better Facebook Messenger
 // @namespace    http://simonalling.se
-// @version      1.1.5
+// @version      1.2
 // @description  Hides those disturbing GIFs unless hovered upon.
 // @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
 // @match        http://*.messenger.com/*
 // @match        https://*.messenger.com/*
+// @match        http://*.facebook.com/*
+// @match        https://*.facebook.com/*
 // @grant        none
 // ==/UserScript==
 
@@ -17,6 +19,8 @@
 const ID_BETTER_FACEBOOK_MESSENGER = "Better_Facebook_Messenger";
 const CLASS_SHARED_PHOTO = "_3m31"; // thumbnail for a shared photo
 const CLASS_CHAT_PHOTO = "_4tsk"; // image in the chat
+const CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER = "_4yp6"; // wrapper for image in the chat on Facebook.com
+const CLASS_FACEBOOK_CHAT_PHOTO = "_4yp9"; // image in the chat on Facebook.com
 
 const STRING_GIF_LABEL = "GIF";
 const COLOR_GIF_BACKGROUND = "rgb(248, 250, 252)";
@@ -27,6 +31,7 @@ const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
 const CSS = `
 /* GIF (common): */
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i],
+.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
 .${CLASS_SHARED_PHOTO}[href*=\\.gif i] {
     background-size: 0; /* to prevent it from shining through at the corners or whatever */
 }
@@ -35,6 +40,9 @@ const CSS = `
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover,
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active,
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus,
+.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
+.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:active .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
+.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
 .${CLASS_SHARED_PHOTO}[href*=\\.gif i]:hover,
 .${CLASS_SHARED_PHOTO}[href*=\\.gif i]:active,
 .${CLASS_SHARED_PHOTO}[href*=\\.gif i]:focus {
@@ -43,6 +51,7 @@ const CSS = `
 
 /* GIF replacement (common): */
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after,
+.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
 .${CLASS_SHARED_PHOTO}[href*=\\.gif i]::after {
     background-color: ${COLOR_GIF_BACKGROUND};
     border: 1px solid ${COLOR_GIF_BORDER};
@@ -59,6 +68,9 @@ const CSS = `
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover::after,
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active::after,
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus::after,
+.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
+.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:active .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
+.${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
 .${CLASS_SHARED_PHOTO}[href*=\\.gif i]:hover::after,
 .${CLASS_SHARED_PHOTO}[href*=\\.gif i]:active::after,
 .${CLASS_SHARED_PHOTO}[href*=\\.gif i]:focus::after {
@@ -66,11 +78,13 @@ const CSS = `
 }
 
 /* GIF in chat: */
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i] {
+.${CLASS_CHAT_PHOTO}[style*=\\.gif i],
+.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i] {
     position: relative; /* to allow absolute positioning */
 }
 
 /* GIF replacement in chat: */
+.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
 .${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after {
     padding-top: 50%; /* trial and error */
     position: absolute;
