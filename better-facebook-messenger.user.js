@@ -14,6 +14,7 @@
 
 (() => {
 // IIFE start
+"use strict";
 
 // Strings:
 const ID_BETTER_FACEBOOK_MESSENGER = "Better_Facebook_Messenger";
