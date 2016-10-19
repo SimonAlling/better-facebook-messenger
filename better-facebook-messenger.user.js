@@ -30,6 +30,7 @@ const SELECTOR_MESSENGER_SHARED_GIF = `.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\
 const STRING_GIF_LABEL = "GIF";
 const COLOR_GIF_BACKGROUND = "rgb(248, 250, 252)";
 const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
+const COLOR_GIF_TEXT = "rgb(0, 132, 255)";
 
 
 // CSS:
@@ -67,6 +68,7 @@ ${SELECTOR_MESSENGER_SHARED_GIF}::after {
     border: 1px solid ${COLOR_GIF_BORDER};
     border-radius: inherit;
     box-sizing: border-box;
+    color: ${COLOR_GIF_TEXT};
     content: "${STRING_GIF_LABEL}";
     display: block;
     height: 100%;
