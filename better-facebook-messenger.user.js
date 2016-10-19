@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better Facebook Messenger
 // @namespace    http://simonalling.se
-// @version      1.2.2
+// @version      1.2.3
 // @description  Hides those disturbing GIFs unless hovered upon.
 // @downloadURL  https://raw.githubusercontent.com/SimonAlling/better-facebook-messenger/master/better-facebook-messenger.user.js
 // @author       Simon Alling
@@ -98,9 +98,16 @@ ${SELECTOR_MESSENGER_CHAT_GIF} {
 /* GIF replacement in chat: */
 ${SELECTOR_FACEBOOK_CHAT_GIF}::after,
 ${SELECTOR_MESSENGER_CHAT_GIF}::after {
-    padding-top: 50%; /* trial and error */
     position: absolute;
     top: 0;
+}
+/* Facebook.com: */
+${SELECTOR_FACEBOOK_CHAT_GIF}::after {
+    padding-top: calc(50% - 10px); /* trial and error */
+}
+/* Messenger.com: */
+${SELECTOR_MESSENGER_CHAT_GIF}::after {
+    padding-top: 50%; /* trial and error */
 }
 
 /* GIF replacement in Shared Photos: */
