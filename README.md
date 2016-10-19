@@ -1,6 +1,9 @@
 # Better Facebook Messenger
 
-Hides those disturbing GIFs unless hovered upon.
+Hides those disturbing GIFs unless hovered upon. Works on both Messenger.com and Facebook.com.
+
+[**Install**][bfm-raw]
+
 
 ## Try it (without installing)
 
@@ -24,6 +27,16 @@ Permanent installation requires **userscript** support, either natively in the b
 With some browsers and/or extensions, a userscript can be installed by simply [opening the `.user.js` file][bfm-raw] and confirming the installation.
 
 If that does not work, please refer to the documentation for your browser and/or extension.
+
+
+## Technical details
+
+The extension is purely CSS-powered. JavaScript is only used for injecting the CSS into the page, by appending a `<style id="Better_Facebook_Messenger">` element to `<head>`.
+
+
+## It doesn't work!
+
+It could be because Facebook has changed something in the code of its site(s), so that the code used to detect and hide GIFs is no longer compatible. This is unfortunately expected to happen every once in a while, and can only be counteracted by updating the extension.
 
 [messenger]: https://messenger.com
 [tampermonkey]: https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en
