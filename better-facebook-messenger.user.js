@@ -17,8 +17,8 @@
 
 // Strings:
 const ID_BETTER_FACEBOOK_MESSENGER = "Better_Facebook_Messenger";
-const CLASS_SHARED_PHOTO = "_3m31"; // thumbnail for a shared photo
-const CLASS_CHAT_PHOTO = "_4tsk"; // image in the chat
+const CLASS_MESSENGER_SHARED_PHOTO = "_3m31"; // thumbnail for a shared photo on Messenger.com
+const CLASS_MESSENGER_CHAT_PHOTO = "_4tsk"; // image in the chat on Messenger.com
 const CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER = "_4yp6"; // wrapper for image in the chat on Facebook.com
 const CLASS_FACEBOOK_CHAT_PHOTO = "_4yp9"; // image in the chat on Facebook.com
 
@@ -30,29 +30,29 @@ const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
 // CSS:
 const CSS = `
 /* GIF (common): */
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i],
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i],
 .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i] {
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i] {
     background-size: 0; /* to prevent it from shining through at the corners or whatever */
 }
 
 /* GIF (common) on hover: */
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus,
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:hover,
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:active,
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:focus,
 .${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
 .${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:active .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
 .${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i],
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:hover,
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:active,
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:focus {
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:hover,
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:active,
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:focus {
     background-size: cover;
 }
 
 /* GIF replacement (common): */
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after,
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]::after,
 .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i]::after {
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]::after {
     background-color: ${COLOR_GIF_BACKGROUND};
     border: 1px solid ${COLOR_GIF_BORDER};
     border-radius: inherit;
@@ -65,34 +65,34 @@ const CSS = `
 }
 
 /* GIF replacement (common) on hover: */
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:hover::after,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:active::after,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]:focus::after,
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:hover::after,
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:active::after,
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]:focus::after,
 .${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:hover .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
 .${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:active .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
 .${CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER}:focus .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:hover::after,
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:active::after,
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i]:focus::after {
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:hover::after,
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:active::after,
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]:focus::after {
     display: none;
 }
 
 /* GIF in chat: */
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i],
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i],
 .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i] {
     position: relative; /* to allow absolute positioning */
 }
 
 /* GIF replacement in chat: */
 .${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif i]::after,
-.${CLASS_CHAT_PHOTO}[style*=\\.gif i]::after {
+.${CLASS_MESSENGER_CHAT_PHOTO}[style*=\\.gif i]::after {
     padding-top: 50%; /* trial and error */
     position: absolute;
     top: 0;
 }
 
 /* GIF replacement in Shared Photos: */
-.${CLASS_SHARED_PHOTO}[href*=\\.gif i]::after {
+.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]::after {
     padding-top: calc(50% - 12px); /* trial and error */
 }
 `;
