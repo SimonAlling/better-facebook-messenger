@@ -17,7 +17,15 @@
 "use strict";
 
 // Strings:
-const ID_BETTER_FACEBOOK_MESSENGER = "Better_Facebook_Messenger";
+const STRING_EXTENSION_NAME = "Better Facebook Messenger";
+const STRING_HEADING = "*** " + STRING_EXTENSION_NAME.toUpperCase() + " ***";
+const STRING_GIF_LABEL = "GIF";
+
+const COLOR_GIF_BACKGROUND = "rgb(248, 250, 252)";
+const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
+const COLOR_GIF_TEXT = "rgb(0, 132, 255)";
+
+const ID_BETTER_FACEBOOK_MESSENGER = STRING_EXTENSION_NAME.replace(/\s/g, "_");
 const CLASS_FACEBOOK_CHAT_PHOTO_WRAPPER = "_4yp6"; // wrapper for image in the chat on Facebook.com
 const CLASS_FACEBOOK_CHAT_PHOTO = "_4yp9"; // image in the chat on Facebook.com
 const CLASS_MESSENGER_CHAT_PHOTO = "_4tsk"; // image in the chat on Messenger.com
@@ -28,14 +36,12 @@ const SELECTOR_FACEBOOK_CHAT_GIF = `.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif 
 const SELECTOR_MESSENGER_CHAT_GIF = `.${CLASS_MESSENGER_CHAT_PHOTO}[data-testid=animated_image]`; // GIF in the chat on Messenger.com
 const SELECTOR_MESSENGER_SHARED_GIF = `.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]`;
 
-const STRING_GIF_LABEL = "GIF";
-const COLOR_GIF_BACKGROUND = "rgb(248, 250, 252)";
-const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
-const COLOR_GIF_TEXT = "rgb(0, 132, 255)";
 
 
 // CSS:
 const CSS = `
+/*${STRING_HEADING}*/
+
 /* GIF (common): */
 /* The purpose of these rules is to prevent the GIFs from shining through at the corners or whatever. */
 ${SELECTOR_FACEBOOK_CHAT_GIF},
