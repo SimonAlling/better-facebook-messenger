@@ -1,0 +1,81 @@
+/**** BETTER FACEBOOK MESSENGER v1.2.3 ****/
+
+/* GIF (common): */
+/* The purpose of these rules is to prevent the GIFs from shining through at the corners or whatever. */
+._4yp9[style*=\.gif i],
+._3m31[href*=\.gif i] {
+    background-size: 0;
+}
+._4tsk[data-testid=animated_image] img {
+    opacity: 0;
+}
+
+/* GIF (common) on hover: */
+._4yp6:hover ._4yp9[style*=\.gif i],
+._4yp6:active ._4yp9[style*=\.gif i],
+._4yp6:focus ._4yp9[style*=\.gif i],
+._3m31[href*=\.gif i]:hover,
+._3m31[href*=\.gif i]:active,
+._3m31[href*=\.gif i]:focus {
+    background-size: cover;
+}
+._4tsk[data-testid=animated_image]:hover img,
+._4tsk[data-testid=animated_image]:active img,
+._4tsk[data-testid=animated_image]:focus img {
+    opacity: 1;
+}
+
+/* GIF replacement (common): */
+._4yp9[style*=\.gif i]::after,
+._4tsk[data-testid=animated_image]::after,
+._3m31[href*=\.gif i]::after {
+    background-color: rgb(248, 250, 252);
+    border: 1px solid rgb(224, 228, 232);
+    border-radius: inherit;
+    box-sizing: border-box;
+    color: rgb(0, 132, 255);
+    content: "GIF";
+    display: block;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+/* GIF replacement (common) on hover: */
+._4yp6:hover ._4yp9[style*=\.gif i]::after,
+._4yp6:active ._4yp9[style*=\.gif i]::after,
+._4yp6:focus ._4yp9[style*=\.gif i]::after,
+._4tsk[data-testid=animated_image]:hover::after,
+._4tsk[data-testid=animated_image]:active::after,
+._4tsk[data-testid=animated_image]:focus::after,
+._3m31[href*=\.gif i]:hover::after,
+._3m31[href*=\.gif i]:active::after,
+._3m31[href*=\.gif i]:focus::after {
+    display: none;
+}
+
+/* GIF in chat: */
+._4yp9[style*=\.gif i],
+._4tsk[data-testid=animated_image] {
+    position: relative; /* to allow absolute positioning */
+}
+
+/* GIF replacement in chat: */
+._4yp9[style*=\.gif i]::after,
+._4tsk[data-testid=animated_image]::after {
+    position: absolute;
+    top: 0;
+}
+/* Facebook.com: */
+._4yp9[style*=\.gif i]::after {
+    padding-top: calc(50% - 10px); /* trial and error */
+}
+/* Messenger.com: */
+._4tsk[data-testid=animated_image]::after {
+    padding-top: 50%; /* trial and error */
+}
+
+/* GIF replacement in Shared Photos: */
+._3m31[href*=\.gif i]::after {
+    padding-top: calc(50% - 12px); /* trial and error */
+}
