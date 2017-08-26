@@ -1,6 +1,6 @@
 # Better Facebook Messenger
 
-Hides those disturbing GIFs unless hovered upon. Works on both Messenger.com and Facebook.com.
+Hides those disturbing GIFs unless hovered upon and prevents the page title from flashing annoyingly whenever something happens. Works on both Messenger.com and Facebook.com.
 
 [**Install**][bfm-raw]
 
@@ -33,19 +33,21 @@ If that does not work, please refer to the documentation for your browser and/or
 
 ### As a userstyle
 
-BFM can also be installed as a userstyle through a userstyle extension:
+A subset of BFM can be installed as a userstyle through a userstyle extension:
 
 * Chrome: [Stylish][stylish-chrome]
 * Firefox: [Stylish][stylish-firefox]
 
-The drawback is that a userstyle (as opposed to a userscript) won't auto-update.
+The drawbacks are that a userstyle cannot do everything that a userscript can, and that it won't auto-update.
 
 To install BFM as a userstyle, copy the CSS code from [`better-facebook-messenger.css`][bfm-raw-css] and add it to Stylish.
+
+Freezing the page title is not possible through CSS, and so works only if BFM is installed as a userscript.
 
 
 ## Technical details
 
-The extension is purely CSS-powered. JavaScript is only used for injecting the CSS into the page, by appending a `<style id="Better_Facebook_Messenger">` element to `<head>`.
+Most of the functionality is purely CSS-powered. JavaScript is used for injecting the CSS into the page, by appending a `<style id="Better_Facebook_Messenger">` element to `<head>`.
 
 
 ## It doesn't work!
