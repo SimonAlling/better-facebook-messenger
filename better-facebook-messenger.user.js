@@ -41,6 +41,10 @@ const SELECTOR_FACEBOOK_CHAT_GIF = `.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif 
 const SELECTOR_MESSENGER_CHAT_GIF = `.${CLASS_MESSENGER_CHAT_PHOTO}[data-testid=animated_image]`; // GIF in the chat on Messenger.com
 const SELECTOR_MESSENGER_SHARED_GIF = `.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]`;
 
+function log(str) {
+    console.log(`[${STRING_EXTENSION_NAME}] ` + str);
+}
+
 function hostnameChecker(hostname) {
     return () => document.location.hostname.indexOf(hostname) > -1;
 }
@@ -50,7 +54,7 @@ const isMessenger = hostnameChecker(HOSTNAME_MESSENGER);
 
 // Freezes document.title so it cannot flash annoyingly:
 function freezeTitle(title) {
-    console.log(`Freezing page title to "${title}".`);
+    log(`Freezing page title to "${title}".`);
     document.title = title;
     Object.defineProperty(document, "title", { writable: false }); // prevents future modification
 }
