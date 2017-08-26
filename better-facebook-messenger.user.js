@@ -20,6 +20,11 @@
 const STRING_EXTENSION_NAME = "Better Facebook Messenger";
 const STRING_HEADING = "*** " + STRING_EXTENSION_NAME.toUpperCase() + " ***";
 const STRING_GIF_LABEL = "GIF";
+const STRING_TITLE_FACEBOOK = "Facebook";
+const STRING_TITLE_MESSENGER = "Messenger";
+
+const HOSTNAME_FACEBOOK = "facebook.com";
+const HOSTNAME_MESSENGER = "messenger.com";
 
 const COLOR_GIF_BACKGROUND = "rgb(248, 250, 252)";
 const COLOR_GIF_BORDER = "rgb(224, 228, 232)";
@@ -36,6 +41,19 @@ const SELECTOR_FACEBOOK_CHAT_GIF = `.${CLASS_FACEBOOK_CHAT_PHOTO}[style*=\\.gif 
 const SELECTOR_MESSENGER_CHAT_GIF = `.${CLASS_MESSENGER_CHAT_PHOTO}[data-testid=animated_image]`; // GIF in the chat on Messenger.com
 const SELECTOR_MESSENGER_SHARED_GIF = `.${CLASS_MESSENGER_SHARED_PHOTO}[href*=\\.gif i]`;
 
+function hostnameChecker(hostname) {
+    return () => document.location.hostname.indexOf(hostname) > -1;
+}
+
+const isFacebook = hostnameChecker(HOSTNAME_FACEBOOK);
+const isMessenger = hostnameChecker(HOSTNAME_MESSENGER);
+
+// Freezes document.title so it cannot flash annoyingly:
+function freezeTitle(title) {
+    console.log(`Freezing page title to "${title}".`);
+    document.title = title;
+    Object.defineProperty(document, "title", { writable: false }); // prevents future modification
+}
 
 
 // CSS:
@@ -131,6 +149,13 @@ document.head.appendChild((() => {
     styleElement.textContent = CSS;
     return styleElement;
 })());
+
+// Freeze title:
+if (isMessenger()) {
+    freezeTitle(STRING_TITLE_MESSENGER);
+} else if (isFacebook()) {
+    freezeTitle(STRING_TITLE_FACEBOOK);
+}
 
 // IIFE end
 })();
